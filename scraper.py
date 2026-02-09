@@ -1,24 +1,28 @@
 import requests
 from bs4 import BeautifulSoup
 
-# Function to fetch panchang data
+class PanchangScraper:
+    def __init__(self, geoname_id, year):
+        self.geoname_id = geoname_id
+        self.year = year
+        self.base_url = 'https://drikpanchang.com/'
 
-def fetch_panchang_data(date):
-    url = f'https://example.com/panchang/{date}'  # Replace with the actual URL
-    response = requests.get(url)
-    soup = BeautifulSoup(response.text, 'html.parser')
+    def scrape_kalashtami_data(self):
+        url = f'{self.base_url}kalashtami-data/{self.geoname_id}/{self.year}'
+        response = requests.get(url)
+        soup = BeautifulSoup(response.text, 'html.parser')
 
-    # Extract the required data (modify selectors as necessary)
-    panchang_data = {
-        'tithi': soup.find('div', class_='tithi').text,
-        'nakshatra': soup.find('div', class_='nakshatra').text,
-        'yoga': soup.find('div', class_='yoga').text,
-        'karana': soup.find('div', class_='karana').text,
-    }
-    return panchang_data
+        # Implement the data extraction logic for Kalashtami here
+        kalashtami_data = []  # Placeholder for extracted data
 
-# Example usage
-if __name__ == '__main__':
-    date = '2026-02-09'  # Example date
-    data = fetch_panchang_data(date)
-    print(data)
+        return kalashtami_data
+
+    def scrape_purnima_data(self):
+        url = f'{self.base_url}purnima-data/{self.geoname_id}/{self.year}'
+        response = requests.get(url)
+        soup = BeautifulSoup(response.text, 'html.parser')
+
+        # Implement the data extraction logic for Purnima here
+        purnima_data = []  # Placeholder for extracted data
+
+        return purnima_data
